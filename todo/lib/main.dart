@@ -4,6 +4,8 @@ import 'package:todo/screens/LotionScreen.dart';
 import 'package:todo/screens/Home.dart';
 import 'package:todo/screens/PlantLanding.dart';
 import 'package:todo/screens/DiscoveryScreen.dart';
+import 'package:todo/screens/ProductScreen.dart';
+import 'package:todo/widgets/ProductCard.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,8 +26,9 @@ class MyApp extends StatelessWidget {
       //home: Home
       //home: PlantLanding(),
       //home: DiscoveryScreen(),
-      home: CreamScreen(),
+      //home: CreamScreen(),
       //home: LotionScreen(brands:),
+      home: ProductScreren(),
     );
   }
 }
