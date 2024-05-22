@@ -14,7 +14,7 @@ class CountCard extends StatelessWidget {
       child: Column(
         children: [
           ElevatedButton(
-            onPressed: (){
+            onPressed: () {
               // accessing functions, make sure you set the listen parameter to false
               // for accessing methods
               Provider.of<CountProvider>(context, listen: false).decCount();
@@ -25,7 +25,10 @@ class CountCard extends StatelessWidget {
             ),
             child: Text('decrease count'),
           ),
-          Text(count.toString(), style: TextStyle(fontSize: 36),),
+          Text(
+            count.toString(),
+            style: TextStyle(fontSize: 36),
+          ),
         ],
       ),
     );

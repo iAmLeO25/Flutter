@@ -11,7 +11,7 @@ class HomeLayout extends StatefulWidget {
 }
 
 class _HomeLayoutState extends State<HomeLayout> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 1;
 
   List<String> titles = ['Home', 'Trending', 'Categories'];
   List<Widget> screens = [
@@ -31,15 +31,15 @@ class _HomeLayoutState extends State<HomeLayout> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
-        onTap: (val){
-           setState(() {
-             _selectedIndex = val;
-           });
+        onTap: (val) {
+          setState(() {
+            _selectedIndex = val;
+          });
         },
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home),label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.star),label: 'Trending'),
-          BottomNavigationBarItem(icon: Icon(Icons.list),label: 'Categories'),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.star), label: 'Trending'),
+          BottomNavigationBarItem(icon: Icon(Icons.list), label: 'Categories'),
         ],
       ),
     );

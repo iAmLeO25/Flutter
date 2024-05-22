@@ -24,21 +24,25 @@ class CategoriesList extends StatelessWidget {
           Wrap(
             children: categories
                 .map((cat) => GestureDetector(
-              onTap: (){
-                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>MoviesByCategoryScreen(category: cat,)));
-              },
-                  child: Container(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => MoviesByCategoryScreen(
+                                  category: cat,
+                                )));
+                      },
+                      child: Container(
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(4),
                             border: Border.all(
                               color: Colors.grey,
                               width: 1,
                             )),
-                        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                         margin: EdgeInsets.only(right: 4, bottom: 4),
                         child: Text(cat),
                       ),
-                ))
+                    ))
                 .toList(),
           )
         ],

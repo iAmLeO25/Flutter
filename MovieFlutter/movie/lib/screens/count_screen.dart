@@ -13,16 +13,17 @@ class CountScreen extends StatelessWidget {
     var count = Provider.of<CountProvider>(context).count;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Counter')
-      ),
+      appBar: AppBar(title: Text('Counter')),
       body: Container(
         child: Column(
           children: [
             Container(
-              height:300,
+              height: 300,
               child: Center(
-                child: Text(count.toString(), style: TextStyle(fontSize: 36),),
+                child: Text(
+                  count.toString(),
+                  style: TextStyle(fontSize: 36),
+                ),
               ),
             ),
             CountCard()
@@ -30,7 +31,7 @@ class CountScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){
+        onPressed: () {
           // accessing functions, make sure you set the listen parameter to false
           // for accessing methods
           Provider.of<CountProvider>(context, listen: false).incCount();

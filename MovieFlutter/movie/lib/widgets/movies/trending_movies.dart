@@ -8,6 +8,7 @@ class TrendingMovies extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // accessing movie data
     final trending = Provider.of<MovieProvider>(context).trending;
 
     return Column(
@@ -21,8 +22,7 @@ class TrendingMovies extends StatelessWidget {
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
-              children: trending.map((el)=>BigMovieCard(el)
-              ).toList(),
+              children: trending.map((el) => BigMovieCard(el)).toList(),
             ),
           ),
         ),

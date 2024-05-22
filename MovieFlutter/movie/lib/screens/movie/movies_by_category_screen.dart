@@ -9,7 +9,6 @@ class MoviesByCategoryScreen extends StatefulWidget {
   final String category;
   const MoviesByCategoryScreen({super.key, required this.category});
 
-
   @override
   State<MoviesByCategoryScreen> createState() => _MoviesByCategoryScreenState();
 }
@@ -17,22 +16,27 @@ class MoviesByCategoryScreen extends StatefulWidget {
 class _MoviesByCategoryScreenState extends State<MoviesByCategoryScreen> {
   @override
   Widget build(BuildContext context) {
-    List<MovieModel> movieList = Provider.of<MovieProvider>(context,listen:false).getMoviesByCategory(widget.category);
-    
+    List<MovieModel> movieList =
+        Provider.of<MovieProvider>(context, listen: false)
+            .getMoviesByCategory(widget.category);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.category),
       ),
       body: Container(
-        child: movieList.length == 0 ? Center(
-          child: Text('No movies available for this category'),
-        ):ListView.builder(
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            itemCount: movieList.length,
-            itemBuilder: (BuildContext context, int index) {
-              return MovieTile(movie: movieList[index]);;
-            }),
+        child: movieList.length == 0
+            ? Center(
+                child: Text('No movies available for this category'),
+              )
+            : ListView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: movieList.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return MovieTile(movie: movieList[index]);
+                  ;
+                }),
       ),
     );
   }

@@ -9,7 +9,6 @@ import 'package:provider/provider.dart';
 class HomeMovieScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
     // List<int> movieList = [1,2,3,4,5,6];
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16),
@@ -18,11 +17,7 @@ class HomeMovieScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              TrendingMovies(),
-              CategoriesList(),
-              LatestMovies()
-            ],
+            children: [TrendingMovies(), CategoriesList(), LatestMovies()],
           ),
         ),
       ),

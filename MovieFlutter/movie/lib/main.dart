@@ -25,25 +25,23 @@ class MyApp extends StatelessWidget {
       providers: [
         // providers should be categorized well to keep track and separate
         // all the modules and their respective variables
-        ChangeNotifierProvider(create: (context)=> CountProvider()),
-        ChangeNotifierProvider(create: (context)=> MovieProvider())
+        ChangeNotifierProvider(create: (context) => CountProvider()),
+        ChangeNotifierProvider(create: (context) => MovieProvider())
       ],
       child: MaterialApp(
-        title: 'Flutter Demo',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
-          useMaterial3: true,
-        ),
-        // home: HomeMovieScreen(),
-        initialRoute: '/',
-        routes: {
-          '/': (context)=> HomeLayout(),
-          // '/trending': (context)=> TrendingMovieScreen(),
-          // '/categories': (context)=> CategoriesMovieScreen(),
-        }
-      ),
+          title: 'Flutter Demo',
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
+            useMaterial3: true,
+          ),
+          // home: HomeMovieScreen(),
+          initialRoute: '/',
+          routes: {
+            '/': (context) => HomeLayout(),
+            // '/trending': (context)=> TrendingMovieScreen(),
+            // '/categories': (context)=> CategoriesMovieScreen(),
+          }),
     );
   }
 }
-
