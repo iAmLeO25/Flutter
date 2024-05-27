@@ -1,8 +1,40 @@
-const categoryConstant = require('../../utils/constants/category.constants');
 const schema = require('./schema');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
+const loginUser = async (request, response) => {
+    const user = await schema.findOne({
+        email: request.body.email
+    });
+    
+    if(!user){
+        response.status(404).send({
+            message:'User does not exist',
+            status: 404
+        })
+    }
+
+    const isPasswordSame = await bcrypt.compare(request.body.password, user.password);
+
+    if(isPasswordSame){
+        const token = await jwt.sign({id: user._id}, 'EXPENSE_TRACKER',{
+            expiresIn: '30d'
+        });
+
+        response.send({
+            data: {
+                user: user,
+                token: token
+            },
+            message:'Signed in successfully',
+            status: 200
+        })
+    }
+}
 
 const getAll = async (request, response) => {
     // select * from table
+
     const data = await schema.find({});
 
     response.send({
@@ -15,7 +47,7 @@ const getAll = async (request, response) => {
 
 const getById = async (request, response) => {
   try{
-    const data = await schema.findById(request.params.id).populate('createdBy','email _id');
+    const data = await schema.findById(request.params.id);
     response.send({
         data: data,
         status: 200,
@@ -31,11 +63,12 @@ const getById = async (request, response) => {
 }
 
 const create = async (request, response) => {
-    const userId = request.user.id;
+    const password = request.body.password;
+    const hashedPassword = await bcrypt.hash(password, 10);
     // insert into table 
     const data = await schema.create({
-        title: request.body.title,
-        createdBy: userId
+        ...request.body,
+        password: hashedPassword
     });
     response.send({
         // data: request.body,
@@ -45,9 +78,12 @@ const create = async (request, response) => {
 }
 
 const update = async (request, response) => {
+    const password = request.body.password;
+    const hashedPassword = await bcrypt.hash(password, 10);
     await schema.findByIdAndUpdate( request.params.id, {
         // title: request.body.title
-        title: request.body.title
+        ...request.body,
+        password: hashedPassword
     })
     response.send({
         // params: request.params.id,
@@ -71,5 +107,6 @@ module.exports = {
     getById,
     create,
     update,
-    remove
+    remove,
+    loginUser
 }
